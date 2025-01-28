@@ -1,45 +1,37 @@
 import browserslist from 'browserslist'
 
+const SUPPORTED_ESBUILD_TARGETS = [
+  'es',
+  'chrome',
+  'edge',
+  'firefox',
+  'ios',
+  'node',
+  'safari',
+  'opera',
+  'ie',
+]
+
+// https://github.com/eBay/browserslist-config/issues/16#issuecomment-863870093
+const UNSUPPORTED = ['android 4']
+
+const REPLACES = {
+  ios_saf: 'ios',
+  android: 'chrome',
+}
+
+const SEP = ' '
+
 /**
  * Convert Browserslist config to esbuild targets
  *
- * @param {string | readonly string[] | null} [browserslistConfig] Browserslist queries
- * @param {import('browserslist').Options} [options] Browserslist options
+ * @param {string | readonly string[] | null} [config] Browserslist queries
+ * @param {import('browserslist').Options} [opts] Browserslist options
  * @returns {string[]} esbuild `targets` array
  */
-export default function browserslistToEsbuild(browserslistConfig, options = {}) {
-  if (!browserslistConfig) {
-    // the path from where the script is run
-    const path = process.cwd()
-
-    // read config if none is passed
-    browserslistConfig = browserslist.loadConfig({ path, ...options })
-  }
-
-  const SUPPORTED_ESBUILD_TARGETS = [
-    'es',
-    'chrome',
-    'edge',
-    'firefox',
-    'ios',
-    'node',
-    'safari',
-    'opera',
-    'ie',
-  ]
-
-  // https://github.com/eBay/browserslist-config/issues/16#issuecomment-863870093
-  const UNSUPPORTED = ['android 4']
-
-  const replaces = {
-    ios_saf: 'ios',
-    android: 'chrome',
-  }
-
-  const separator = ' '
-
+export default function browserslistToEsbuild(config, opts = {}) {
   return (
-    browserslist(browserslistConfig, options)
+    browserslist(config, opts)
       // filter out the unsupported ones
       .filter((b) => !UNSUPPORTED.some((u) => b.startsWith(u)))
       // replaces safari TP with latest safari version
@@ -51,11 +43,11 @@ export default function browserslistToEsbuild(browserslistConfig, options = {}) 
         return b
       })
       // transform into ['chrome', '88']
-      .map((b) => b.split(separator))
+      .map((b) => b.split(SEP))
       // replace the similar browser
       .map((b) => {
-        if (replaces[b[0]]) {
-          b[0] = replaces[b[0]]
+        if (REPLACES[b[0]]) {
+          b[0] = REPLACES[b[0]]
         }
 
         return b
