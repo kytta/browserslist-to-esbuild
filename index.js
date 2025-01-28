@@ -8,14 +8,6 @@ import browserslist from 'browserslist'
  * @returns {string[]} esbuild `targets` array
  */
 export default function browserslistToEsbuild(browserslistConfig, options = {}) {
-  if (!browserslistConfig) {
-    // the path from where the script is run
-    const path = process.cwd()
-
-    // read config if none is passed
-    browserslistConfig = browserslist.loadConfig({ path, ...options })
-  }
-
   const SUPPORTED_ESBUILD_TARGETS = [
     'es',
     'chrome',
