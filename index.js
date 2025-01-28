@@ -1,5 +1,27 @@
 import browserslist from 'browserslist'
 
+const SUPPORTED_ESBUILD_TARGETS = [
+  'es',
+  'chrome',
+  'edge',
+  'firefox',
+  'ios',
+  'node',
+  'safari',
+  'opera',
+  'ie',
+]
+
+// https://github.com/eBay/browserslist-config/issues/16#issuecomment-863870093
+const UNSUPPORTED = ['android 4']
+
+const REPLACES = {
+  ios_saf: 'ios',
+  android: 'chrome',
+}
+
+const SEP = ' '
+
 /**
  * Convert Browserslist config to esbuild targets
  *
@@ -8,28 +30,6 @@ import browserslist from 'browserslist'
  * @returns {string[]} esbuild `targets` array
  */
 export default function browserslistToEsbuild(config, opts = {}) {
-  const SUPPORTED_ESBUILD_TARGETS = [
-    'es',
-    'chrome',
-    'edge',
-    'firefox',
-    'ios',
-    'node',
-    'safari',
-    'opera',
-    'ie',
-  ]
-
-  // https://github.com/eBay/browserslist-config/issues/16#issuecomment-863870093
-  const UNSUPPORTED = ['android 4']
-
-  const replaces = {
-    ios_saf: 'ios',
-    android: 'chrome',
-  }
-
-  const separator = ' '
-
   return (
     browserslist(config, opts)
       // filter out the unsupported ones
@@ -43,11 +43,11 @@ export default function browserslistToEsbuild(config, opts = {}) {
         return b
       })
       // transform into ['chrome', '88']
-      .map((b) => b.split(separator))
+      .map((b) => b.split(SEP))
       // replace the similar browser
       .map((b) => {
-        if (replaces[b[0]]) {
-          b[0] = replaces[b[0]]
+        if (REPLACES[b[0]]) {
+          b[0] = REPLACES[b[0]]
         }
 
         return b
