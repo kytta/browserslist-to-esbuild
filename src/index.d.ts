@@ -1,8 +1,13 @@
-import browserslist from 'browserslist'
+import { type Options } from 'browserslist'
 
-declare function browserslistToEsbuild(
-  browserslistConfig?: string | readonly string[],
-  options?: browserslist.Options
+/**
+ * Convert Browserslist config to esbuild targets
+ *
+ * @param browserslistConfig Browserslist queries
+ * @param options Browserslist options
+ * @returns esbuild `targets` array
+ */
+export default function browserslistToEsbuild(
+  browserslistConfig?: string | readonly string[] | null,
+  options?: Options
 ): string[]
-
-export default browserslistToEsbuild
