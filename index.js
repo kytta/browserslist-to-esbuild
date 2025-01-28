@@ -3,11 +3,11 @@ import browserslist from 'browserslist'
 /**
  * Convert Browserslist config to esbuild targets
  *
- * @param {string | readonly string[] | null} [browserslistConfig] Browserslist queries
- * @param {import('browserslist').Options} [options] Browserslist options
+ * @param {string | readonly string[] | null} [config] Browserslist queries
+ * @param {import('browserslist').Options} [opts] Browserslist options
  * @returns {string[]} esbuild `targets` array
  */
-export default function browserslistToEsbuild(browserslistConfig, options = {}) {
+export default function browserslistToEsbuild(config, opts = {}) {
   const SUPPORTED_ESBUILD_TARGETS = [
     'es',
     'chrome',
@@ -31,7 +31,7 @@ export default function browserslistToEsbuild(browserslistConfig, options = {}) 
   const separator = ' '
 
   return (
-    browserslist(browserslistConfig, options)
+    browserslist(config, opts)
       // filter out the unsupported ones
       .filter((b) => !UNSUPPORTED.some((u) => b.startsWith(u)))
       // replaces safari TP with latest safari version
