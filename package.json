@@ -28,9 +28,6 @@
 		"default": "./src/index.js"
 	},
 	"types": "./src/index.d.ts",
-	"bin": {
-		"browserslist-to-esbuild": "./cli/index.js"
-	},
 	"engines": {
 		"node": ">=18"
 	},
@@ -38,14 +35,12 @@
 		"test": "ava"
 	},
 	"files": [
-		"src/",
-		"cli/"
+		"src/"
 	],
 	"peerDependencies": {
 		"browserslist": "*"
 	},
 	"dependencies": {
-		"meow": "^13.0.0"
 	},
 	"devDependencies": {
 		"ava": "^6.0.1",
