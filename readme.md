@@ -1,6 +1,9 @@
-# browserslist-to-esbuild
+# kytta/browserslist-to-esbuild
 
 > Use [browserslist](https://github.com/browserslist/browserslist) with [esbuild](https://esbuild.github.io/).
+
+> [!NOTE]
+> This is a fork of [`browserslist-to-esbuild`](https://github.com/marcofugaro/browserslist-to-esbuild) by Marco Fugaro with some changes (TBD)
 
 Allows you to use browserslist and pass the correct browsers to esbuild's [target](https://esbuild.github.io/api/#target) option.
 
@@ -9,13 +12,13 @@ Allows you to use browserslist and pass the correct browsers to esbuild's [targe
 You have to install the `browserslist` package as well in your project:
 
 ```
-npm install --save-dev browserslist browserslist-to-esbuild
+npm install --save-dev browserslist @kytta/browserslist-to-esbuild
 ```
 
 or
 
 ```
-yarn add --dev browserslist browserslist-to-esbuild
+yarn add --dev browserslist @kytta/browserslist-to-esbuild
 ```
 
 ## Usage

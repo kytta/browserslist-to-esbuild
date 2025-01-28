@@ -1,14 +1,21 @@
 {
-	"name": "browserslist-to-esbuild",
+	"name": "@kytta/browserslist-to-esbuild",
 	"version": "2.1.1",
 	"description": "Get esbuild-compatible targets from a browserlist config",
 	"license": "MIT",
-	"repository": "marcofugaro/browserslist-to-esbuild",
+	"repository": "kytta/browserslist-to-esbuild",
 	"author": {
 		"name": "Marco Fugaro",
 		"email": "marco.fugaro@gmail.com",
 		"url": "https://marcofuga.ro"
 	},
+	"contributors": [
+		{
+			"name": "Nikita Karamov",
+			"email": "me@kytta.dev",
+			"url": "https://www.kytta.dev/"
+		}
+	],
 	"keywords": [
 		"browserslist",
 		"browserlist",
