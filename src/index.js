@@ -1,7 +1,12 @@
 import browserslist from 'browserslist'
 
-// convert the browserslist field in package.json to
-// esbuild compatible array of browsers
+/**
+ * Convert Browserslist config to esbuild targets
+ *
+ * @param {string | readonly string[] | null} [browserslistConfig] Browserslist queries
+ * @param {import('browserslist').Options} [options] Browserslist options
+ * @returns {string[]} esbuild `targets` array
+ */
 export default function browserslistToEsbuild(browserslistConfig, options = {}) {
   if (!browserslistConfig) {
     // the path from where the script is run
