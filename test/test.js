@@ -2,7 +2,7 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 import test from 'ava'
 import sinon from 'sinon'
-import browserslistToEsbuild from '../src/index.js'
+import browserslistToEsbuild from '../index.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 

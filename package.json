@@ -23,11 +23,12 @@
 		"browsers"
 	],
 	"type": "module",
+	"main": "./index.js",
+	"types": "./index.d.ts",
 	"exports": {
-		"types": "./src/index.d.ts",
-		"default": "./src/index.js"
+		"types": "./index.d.ts",
+		"default": "./index.js"
 	},
-	"types": "./src/index.d.ts",
 	"engines": {
 		"node": ">=18"
 	},
@@ -35,7 +36,8 @@
 		"test": "ava"
 	},
 	"files": [
-		"src/"
+		"index.js",
+		"index.d.ts"
 	],
 	"peerDependencies": {
 		"browserslist": "*"
